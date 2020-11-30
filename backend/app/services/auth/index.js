@@ -1,14 +1,12 @@
 import passport from "passport";
 
-import { getAuthConfig, getAllowedDomains, getAllowedUsers } from "../../app.config";
+import { getAuthConfig, getAllowedDomains } from "../../app.config";
 
-import { domainAuthorization, userAuthorization } from "./authorization";
+import { domainAuthorization } from "./authorization";
 import { buildAuthStrategy } from "./strategy";
 
 const authConfig = getAuthConfig();
-var isAuthorized = domainAuthorization(getAllowedDomains());
-
-isAuthorized = userAuthorization(getAllowedUsers());
+const isAuthorized = domainAuthorization(getAllowedDomains());
 
 passport.use(buildAuthStrategy(authConfig, isAuthorized));
 passport.serializeUser((user, done) => done(null, user));

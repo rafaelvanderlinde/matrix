@@ -8,7 +8,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import ThemeCheckbox from "./ThemeCheckbox";
 import NotificationCheckbox from "./NotificationCheckbox";
 import { SettingsPropType } from "../morpheus/store/models";
-import LanguageSwitcher from "./LanguageSwitcher";
 
 const MenuRoom = ({
   onExitRoom,
@@ -19,7 +18,6 @@ const MenuRoom = ({
 }) => (
   <>
     <ThemeCheckbox onChange={onChangeTheme} />
-    <LanguageSwitcher />
     <NotificationCheckbox
       isDisabled={settings.notificationDisabled}
       onChange={event => {

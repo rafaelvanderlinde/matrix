@@ -59,8 +59,7 @@ The Matrix project has some environments that important to define.
 		   },
 		   {
 		      "id":"${UUID}",
-		      "name":"WAR ROOM CDP",
-          "description": "Welcome to the WAR room"
+		      "name":"WAR ROOM CDP"
 		   },
 		   {
 		      "id":"${UUID}",

@@ -1,5 +1,6 @@
 import express from "express";
 import cookieSession from "cookie-session";
+import bodyParser from "body-parser";
 import path from "path";
 import morgan from "morgan"
 
@@ -20,7 +21,7 @@ const app = express();
 
 app.use(morgan("tiny"));
 app.use(cookieSession(getSessionConfig()));
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // set the template engine ejs
 app.set("view engine", "ejs");

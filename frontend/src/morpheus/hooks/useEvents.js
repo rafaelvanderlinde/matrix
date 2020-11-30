@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import debounce from "lodash.debounce";
 
-import AudioFiles from "../../constants/AudioFiles";
 import SnackbarActions from "../../components/SnackbarActions";
 import { showBrowserNotification } from "../../notification";
 import { initEvents, closeConnection } from "../socket";
@@ -15,7 +14,6 @@ const useEvents = (
   enqueueSnackbar,
   closeSnackbar,
   setReceiveInviteOpen,
-  setReceiveInviteAudio,
   setInvitation,
   isLoggedIn,
   rooms,
@@ -60,13 +58,8 @@ const useEvents = (
         onRemoveUser(userId);
       });
       events.onParticipantIsCalled((user, roomId) => {
-        const audio = new Audio(AudioFiles.inviteNotification);
-        audio.loop = true;
-        audio.play();
-
         const room = rooms.find(r => r.id === roomId);
         setReceiveInviteOpen(true);
-        setReceiveInviteAudio(audio);
         setInvitation({ user, room });
         if (!settings.notificationDisabled) {
           showBrowserNotification(
@@ -93,7 +86,6 @@ const useEvents = (
     rooms,
     setInvitation,
     setReceiveInviteOpen,
-    setReceiveInviteAudio,
     settings.notificationDisabled
   ]);
 };
