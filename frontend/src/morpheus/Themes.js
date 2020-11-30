@@ -35,7 +35,7 @@ export const isDarkTheme = () => {
   try {
     theme = storage.getTheme();
     // eslint-disable-next-line no-empty
-  } catch (e) { }
+  } catch (e) {}
 
   if (!theme) {
     theme = getDefaultTheme();
@@ -47,18 +47,16 @@ export const isDarkTheme = () => {
 export default {
   [THEMES.light]: createMuiTheme({
     palette: {
-      primary: { main: blue[500] },
-      secondary: { main: pink.A400 },
+      primary: blue,
+      secondary: pink,
       background: { default: "#e1f5fe" }
     }
   }),
   [THEMES.dark]: createMuiTheme({
     palette: {
-      primary: { main: blue[200] },
-      secondary: { main: "#f05b7b" },
+      primary: blue,
+      secondary: pink,
       type: "dark"
     }
   })
 };
-
-

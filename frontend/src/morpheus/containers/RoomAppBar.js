@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import InfoIcon from "@material-ui/icons/InfoOutlined";
-import Tooltip from "@material-ui/core/Tooltip";
+
 import AppBarTitle from "../../components/AppBarTitle";
 import MenuRoom from "../../components/MenuRoom";
 import ShareModal from "../../components/ShareModal";
@@ -11,12 +9,6 @@ import { selectRooms, selectSystemSettings } from "../store/selectors";
 import { emitLeftMeeting } from "../socket";
 import { changeSystemSetting, toggleTheme } from "../store/actions";
 import { RoomsPropType, SettingsPropType } from "../store/models";
-
-const useStyles = makeStyles(() => ({
-  descriptionIcon: {
-    marginLeft: 16,
-  },
-}));
 
 const RoomAppBar = ({
   onChangeSettings,
@@ -30,18 +22,10 @@ const RoomAppBar = ({
   const { roomId } = match.params;
   const findRoomResult = rooms.find(r => r.id === roomId);
   const currentRoomName = findRoomResult ? findRoomResult.name : "";
-  const currentRoomDescription = findRoomResult ? findRoomResult.description : "";
-  const classes = useStyles();
+
   return (
     <>
-      <AppBarTitle>
-        {currentRoomName}
-        {currentRoomDescription && (
-          <Tooltip title={currentRoomDescription}>
-            <InfoIcon color="action" fontSize="small" className={classes.descriptionIcon} />
-          </Tooltip>
-        )}
-      </AppBarTitle>
+      <AppBarTitle>{currentRoomName}</AppBarTitle>
       <MenuRoom
         onExitRoom={() => {
           emitLeftMeeting();
